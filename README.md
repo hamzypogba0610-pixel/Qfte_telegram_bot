@@ -3,15 +3,30 @@
 Moteur de trading quantitatif pour futures crypto avec interface Telegram.
 
 ## Structure
+
 qfte-v13/
 ├── app/
-│   └── main.py
+│   ├── init.py
+│   ├── main.py
+│   ├── models/
+│   │   ├── init.py
+│   │   └── signal.py
+│   └── routers/
+│       ├── init.py
+│       └── signals.py
+├── scripts/
+│   └── test_api.py
+├── strategies/
+│   ├── init.py
+│   └── rsi_strategy.py
 ├── data/
 ├── logs/
 ├── tests/
 ├── bot.py
 ├── config.py
+├── database.py
 ├── logging_config.py
+├── run.py
 ├── requirements.txt
 ├── .env.example
 ├── .gitignore
