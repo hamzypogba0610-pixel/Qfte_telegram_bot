@@ -1,5 +1,4 @@
-
-import os
+ import os
 import logging
 
 from telegram import Update
@@ -11,39 +10,33 @@ logging.basicConfig(
 )
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        "Bot en ligne !
-"
-        "Utilise /help pour voir les commandes disponibles."
-    )
+    msg = "Bot en ligne !
+Utilise /help pour voir les commandes disponibles."
+    await update.message.reply_text(msg)
 
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
+    msg = (
         "Commandes disponibles :
 "
-        "/start - Démarrer le bot
+        "/start - Demarrer le bot
 "
         "/help - Afficher cette aide
 "
-        "/about - À propos du bot
+        "/about - A propos du bot
 "
-        "/echo <texte> - Répéter un texte"
+        "/echo <texte> - Repeter un texte"
     )
+    await update.message.reply_text(msg)
 
 async def about(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        "Bot Qfte
-"
-        "Développé pour démontrer un bot Telegram simple.
-"
-        "Hébergé sur Railway."
-    )
+    msg = "Bot Qfte - Developpe pour demontrer un bot Telegram simple. Heberge sur Railway."
+    await update.message.reply_text(msg)
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     if text.startswith("/echo "):
         text = text[6:]
-    await update.message.reply_text(f"Echo: {text}")
+    await update.message.reply_text("Echo: " + text)
 
 if __name__ == "__main__":
     TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
