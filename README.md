@@ -1,29 +1,57 @@
-# Bot Telegram QFTE
+# QFTE V13 — Quantitative Futures & Telegram Engine
 
-Bot Telegram Python qui répond en français aux commandes QFTE et reçoit des
-matchs au format `Équipe A vs Équipe B`.
+Moteur de trading quantitatif pour futures crypto avec interface Telegram.
 
-## Lancer le bot
+## Structure
+qfte-v13/
+├── app/
+│   └── main.py
+├── data/
+├── logs/
+├── tests/
+├── bot.py
+├── config.py
+├── logging_config.py
+├── requirements.txt
+├── .env.example
+├── .gitignore
+└── README.md
 
-1. Le token Telegram doit être enregistré dans le Secret Replit nommé
-   `TELEGRAM_BOT_TOKEN`.
-2. Lancez `python main.py`.
+## Installation
 
-Le bot utilise le mode polling : laissez le processus en marche pour qu'il
-continue à recevoir les messages.
+```bash
+# Cloner le dépôt
+git clone [https://github.com/ton-username/qfte-v13.git](https://github.com/ton-username/qfte-v13.git)
+cd qfte-v13
 
-## Commandes
+# Créer un environnement virtuel
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# ou
+venvScriptsactivate     # Windows
 
-- `/start` — message de bienvenue
-- `/statut` — vérifie que le bot est actif
-- `/format` — affiche le format d'exemple
-- `/aide` — explique comment envoyer un rapport complet
-- `/debug` — affiche le dictionnaire du dernier match reçu
-- `/historique` — affiche les cinq derniers matchs enregistrés
+# Installer les dépendances
+pip install -r requirements.txt
 
-Un message comme `Arsenal vs Liverpool` est automatiquement reçu et traité
-avec les équipes, la compétition détectée, la qualité des données, la
-checklist du calendrier et des scénarios qualitatifs sans fausses probabilités.
+# Copier .env.example en .env et remplir les valeurs
+cp .env.example .env
 
-Les rapports reçus sont enregistrés dans la base SQLite locale
-`qfte_matches.db`.
+## Configuration
+
+Édite `.env` et remplis :
+
+- `TELEGRAM_BOT_TOKEN` : Token de ton bot Telegram
+- `TELEGRAM_ADMIN_IDS` : IDs des admins (séparés par des virgules)
+
+## Lancement
+
+```bash
+# Lancer le bot Telegram
+python bot.py
+
+# Lancer l'API FastAPI
+uvicorn app.main:app --reload
+
+## Licence
+
+MIT
