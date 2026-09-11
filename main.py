@@ -4,7 +4,6 @@ import logging
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-# Activer des logs basiques
 logging.basicConfig(
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
@@ -14,7 +13,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("Bot en ligne !")
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(f"Echo: {update.message.text}")
+    text = update.message.text
+    if text.startswith("/echo "):
+        text = text[6:]
+    await update.message.reply_text(f"Echo: {text}")
 
 if __name__ == "__main__":
     TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
