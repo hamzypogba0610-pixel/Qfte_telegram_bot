@@ -945,10 +945,7 @@ async def error_handler(
 def main() -> None:
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     if not token:
-        raise RuntimeError(
-            "Le Secret TELEGRAM_BOT_TOKEN est introuvable. "
-            "Ajoutez-le dans Replit avant de lancer le bot."
-        )
+        raise RuntimeError("TELEGRAM_BOT_TOKEN is missing. Add it as an environment variable.")
 
     init_database()
     application = Application.builder().token(token).build()
